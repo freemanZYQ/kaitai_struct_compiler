@@ -659,12 +659,12 @@ class JavaCompiler(val typeProvider: ClassTypeProvider, config: RuntimeConfig)
 
     if (enumColl.size > 1) {
       enumColl.dropRight(1).foreach { case (id, label) =>
-        out.puts(s"${value2Const(label)}($id),")
+        out.puts(s"${value2Const(label)}(0x${id.toHexString}L),")
       }
     }
     enumColl.last match {
       case (id, label) =>
-        out.puts(s"${value2Const(label)}($id);")
+        out.puts(s"${value2Const(label)}(0x${id.toHexString}L);")
     }
 
     out.puts
